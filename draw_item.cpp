@@ -19,12 +19,12 @@ void drawAxis() {
   glColor3d(1.0, 0.0, 0.0);
   glVertex3d(-100.0, 0.0, 0.0);
   glVertex3d(100.0, 0.0, 0.0);
-
+/*
   // Y
   glColor3d(0.0, 1.0, 0.0);
   glVertex3d(0.0, -100.0, 0.0);
   glVertex3d(0.0, 100.0, 0.0);
-
+*/
   // Z
   glColor3d(0.0, 0.0, 1.0);
   glVertex3d(0.0, 0.0, -100.0);

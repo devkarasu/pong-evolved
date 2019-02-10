@@ -1,8 +1,19 @@
 #include "pch.h"
 #include "draw_item.h"
+#include "bar_pair.h"
 
 void display();
 void reshape(int w, int h);
+void specialkeyDown(int key, int x, int y);
+void specialkeyUp(int key, int x, int y);
+void timer(int t);
+
+BarPair bar_x(6, 20, 0);
+BarPair bar_z(6, 20, 90);
+bool isPressL = false;
+bool isPressR = false;
+bool isPressU = false;
+bool isPressD = false;
 
 // Initialization
 void GLUT_INIT() {
@@ -14,6 +25,9 @@ void GLUT_INIT() {
 void GLUT_CALL_FUNC() {
   glutDisplayFunc(display);
   glutReshapeFunc(reshape);
+  glutTimerFunc(0, timer, 20);
+  glutSpecialFunc(specialkeyDown);
+  glutSpecialUpFunc(specialkeyUp);
 }
 
 void MY_INIT() {
@@ -39,7 +53,7 @@ void display() {
   glLoadIdentity();
 
   // 視点の設定
-  gluLookAt(0.0, 40.0, 60.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+  gluLookAt(30.0, 40.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
   // 軸の表示
   drawAxis();
@@ -48,27 +62,8 @@ void display() {
   glColor3d(0.0, 1.0, 0.0);
 
   // 枠の表示
-  glPushMatrix();
-  glTranslated(10.0, 0.0, 0.0);
-  glRotated(90, 0.0, 1.0, 0.0);
-  drawPrism(1.0, 30);
-  glPopMatrix();
-
-  glPushMatrix();
-  glTranslated(-10.0, 0.0, 0.0);
-  glRotated(90, 0.0, 1.0, 0.0);
-  drawPrism(1.0, 30);
-  glPopMatrix();
-
-  glPushMatrix();
-  glTranslated(0.0, 0.0, 15.0);
-  drawPrism(1.0, 21);
-  glPopMatrix();
-
-  glPushMatrix();
-  glTranslated(0.0, 0.0, -15.0);
-  drawPrism(1.0, 21);
-  glPopMatrix();
+  bar_x.draw();
+  bar_z.draw();
 
   // 玉の表示
   glPushMatrix();
@@ -89,3 +84,49 @@ void reshape(int w, int h) {
   glMatrixMode(GL_MODELVIEW);
 }
 
+void specialkeyDown(int key, int x, int y) {
+  if (key == GLUT_KEY_UP) {
+    isPressU = true;
+  }
+  if (key == GLUT_KEY_DOWN) {
+    isPressD = true;
+  }
+  if (key == GLUT_KEY_LEFT) {
+    isPressL = true;
+  }
+  if (key == GLUT_KEY_RIGHT) {
+    isPressR = true;
+  }
+}
+
+void specialkeyUp(int key, int x, int y) {
+  if (key == GLUT_KEY_UP) {
+    isPressU = false;
+  }
+  if (key == GLUT_KEY_DOWN) {
+    isPressD = false;
+  }
+  if (key == GLUT_KEY_LEFT) {
+    isPressL = false;
+  }
+  if (key == GLUT_KEY_RIGHT) {
+    isPressR = false;
+  }
+}
+
+void timer(int t) {
+  if (isPressU && isPressD);
+  else if (isPressU)
+    bar_x.moveLeft(0.05);
+  else if (isPressD)
+    bar_x.moveRight(0.05);
+
+  if (isPressL && isPressR);
+  else if (isPressL)
+    bar_z.moveRight(0.05);
+  else if (isPressR)
+    bar_z.moveLeft(0.05);
+  
+  glutPostRedisplay();
+  glutTimerFunc(t, timer, 20);
+}

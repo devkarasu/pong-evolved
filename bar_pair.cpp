@@ -16,17 +16,16 @@ void BarPair::moveLeft(double speed) {
 }
 
 void BarPair::draw() const {
-  glPushMatrix();
-  glTranslated(width / 2, 0.0, 0.0);
-  glRotated(angle, 0.0, 1.0, 0.0);
-  drawPrism(1.0, length);
-  glPopMatrix();
-
-  glPushMatrix();
-  glTranslated(-width / 2, 0.0, 0.0);
-  glRotated(angle, 0.0, 1.0, 0.0);
-  drawPrism(1.0, length);
-  glPopMatrix();
+  for (int i = -1; i < 2; i += 2) {
+    glPushMatrix();
+    if (angle == 0)
+      glTranslated(position, 0.0, i * width / 2);
+    else
+      glTranslated(i * width / 2, 0.0, position);
+    glRotated(angle, 0.0, 1.0, 0.0);
+    drawPrism(1.0, length);
+    glPopMatrix();
+  }
 }
 
 double BarPair::getSpeed() const {
