@@ -102,15 +102,19 @@ void specialkeyDown(int key, int x, int y) {
 void specialkeyUp(int key, int x, int y) {
   if (key == GLUT_KEY_UP) {
     isPressU = false;
+    bar_x.stop();
   }
   if (key == GLUT_KEY_DOWN) {
     isPressD = false;
+    bar_x.stop();
   }
   if (key == GLUT_KEY_LEFT) {
     isPressL = false;
+    bar_z.stop();
   }
   if (key == GLUT_KEY_RIGHT) {
     isPressR = false;
+    bar_z.stop();
   }
 }
 

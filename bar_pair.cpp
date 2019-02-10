@@ -5,13 +5,13 @@
 BarPair::BarPair(double length, double width, double angle) 
   : position(0), length(length), width(width), speed(0), angle(angle) { }
 
-void BarPair::moveRight(double speed) {
-  this->speed = speed;
+void BarPair::moveRight(double a) {
+  this->speed += a;
   position += speed;
 }
 
-void BarPair::moveLeft(double speed) {
-  this->speed = speed;
+void BarPair::moveLeft(double a) {
+  this->speed += a;
   position -= speed;
 }
 
@@ -30,4 +30,8 @@ void BarPair::draw() const {
 
 double BarPair::getSpeed() const {
   return speed;
+}
+
+void BarPair::stop() {
+  speed = 0;
 }

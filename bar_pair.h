@@ -9,10 +9,11 @@ class BarPair {
 
 public:
   BarPair(double length, double width, double angle);
-  void moveRight(double speed);
-  void moveLeft(double speed);
+  void moveRight(double a);
+  void moveLeft(double a);
 
   void draw() const;
 
   double getSpeed() const;
+  void stop();
 };
