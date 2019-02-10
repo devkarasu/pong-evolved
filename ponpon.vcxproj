@@ -151,12 +151,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="bar_pair.h" />
+    <ClInclude Include="objects.h" />
     <ClInclude Include="draw_item.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="bar_pair.cpp" />
+    <ClCompile Include="objects.cpp" />
     <ClCompile Include="draw_item.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

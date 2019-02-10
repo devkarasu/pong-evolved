@@ -21,7 +21,7 @@
     <ClInclude Include="draw_item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="bar_pair.h">
+    <ClInclude Include="objects.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,7 +35,7 @@
     <ClCompile Include="draw_item.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bar_pair.cpp">
+    <ClCompile Include="objects.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

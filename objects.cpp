@@ -1,7 +1,18 @@
 #include "pch.h"
-#include "bar_pair.h"
+#include "objects.h"
 #include "draw_item.h"
 
+Ball::Ball() :x(0), z(0), x_speed(0.2), z_speed(0.4) {};
+
+void Ball::draw() {
+  glPushMatrix();
+  glTranslated(x, 0, z);
+  glutSolidCube(1.0);
+  glPopMatrix();
+
+  x += x_speed;
+  z += z_speed;
+}
 BarPair::BarPair(double length, double width, double angle, double limit) 
   : position(0), length(length), width(width), speed(0), angle(angle), limit(limit) { }
 

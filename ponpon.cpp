@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "draw_item.h"
-#include "bar_pair.h"
+#include "objects.h"
 
 void display();
 void reshape(int w, int h);
@@ -8,8 +8,9 @@ void specialkeyDown(int key, int x, int y);
 void specialkeyUp(int key, int x, int y);
 void timer(int t);
 
-BarPair bar_x(6, 20, 0, 10);
-BarPair bar_z(6, 20, 90, 10);
+Ball ball;
+BarPair bar_x(8, 40, 0, 16);
+BarPair bar_z(8, 40, 90, 16);
 bool isPressL = false;
 bool isPressR = false;
 bool isPressU = false;
@@ -53,7 +54,7 @@ void display() {
   glLoadIdentity();
 
   // 視点の設定
-  gluLookAt(30.0, 40.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+  gluLookAt(90.0, 70.0, 40.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
   // 軸の表示
   drawAxis();
@@ -66,9 +67,7 @@ void display() {
   bar_z.draw();
 
   // 玉の表示
-  glPushMatrix();
-  glutSolidCube(2);
-  glPopMatrix();
+  ball.draw();
 
   glFlush();
 }
@@ -80,7 +79,7 @@ void reshape(int w, int h) {
   // 透視投影
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  gluPerspective(30.0, (double)w / (double)h, 1.0, 100.0);
+  gluPerspective(30.0, (double)w / (double)h, 1.0, 200.0);
   glMatrixMode(GL_MODELVIEW);
 }
 

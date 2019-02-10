@@ -1,5 +1,16 @@
 #pragma once
 
+struct Ball {
+  double x;
+  double z;
+
+  double x_speed;
+  double z_speed;
+
+  Ball();
+  void draw();
+};
+
 class BarPair {
   double position;
   double length; // バーの長さ
@@ -17,4 +28,7 @@ public:
 
   double getSpeed() const;
   void stop();
+
+  bool isHit(const Ball& ball);
 };
+
