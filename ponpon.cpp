@@ -8,8 +8,8 @@ void specialkeyDown(int key, int x, int y);
 void specialkeyUp(int key, int x, int y);
 void timer(int t);
 
-BarPair bar_x(6, 20, 0);
-BarPair bar_z(6, 20, 90);
+BarPair bar_x(6, 20, 0, 10);
+BarPair bar_z(6, 20, 90, 10);
 bool isPressL = false;
 bool isPressR = false;
 bool isPressU = false;

@@ -2,17 +2,25 @@
 #include "bar_pair.h"
 #include "draw_item.h"
 
-BarPair::BarPair(double length, double width, double angle) 
-  : position(0), length(length), width(width), speed(0), angle(angle) { }
+BarPair::BarPair(double length, double width, double angle, double limit) 
+  : position(0), length(length), width(width), speed(0), angle(angle), limit(limit) { }
 
 void BarPair::moveRight(double a) {
   this->speed += a;
   position += speed;
+  if (position > limit)
+    position = limit;
+  else if (position < -limit)
+    position = -limit;
 }
 
 void BarPair::moveLeft(double a) {
   this->speed += a;
   position -= speed;
+  if (position > limit)
+    position = limit;
+  else if (position < -limit)
+    position = -limit;
 }
 
 void BarPair::draw() const {
