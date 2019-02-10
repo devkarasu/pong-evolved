@@ -39,7 +39,7 @@ void display() {
   glLoadIdentity();
 
   // 視点の設定
-  gluLookAt(0.0, 80.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0);
+  gluLookAt(0.0, 40.0, 60.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
   // 軸の表示
   drawAxis();
