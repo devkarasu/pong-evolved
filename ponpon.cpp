@@ -48,26 +48,47 @@ void display() {
   glClear(GL_COLOR_BUFFER_BIT);
   glLoadIdentity();
 
-  // ‹“_‚Ìİ’è
-  gluLookAt(10.0, 18.0, 25.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+  // è¦–ç‚¹ã®è¨­å®š
+  gluLookAt(0.0, 80.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0);
 
-  // ²‚Ì•\¦
+  // è»¸ã®è¡¨ç¤º
   drawAxis();
 
-  // •¨‘Ì‚ÌF
+  // ç‰©ä½“ã®è‰²
   glColor3d(0.0, 1.0, 0.0);
 
-  // ˜g‚Ì•\¦
-  drawPrism(2.0, 30);
+  // æ ã®è¡¨ç¤º
+  glPushMatrix();
+  glTranslated(10.0, 0.0, 0.0);
+  glRotated(90, 0.0, 1.0, 0.0);
+  drawPrism(1.0, 30);
+  glPopMatrix();
+
+  glPushMatrix();
+  glTranslated(-10.0, 0.0, 0.0);
+  glRotated(90, 0.0, 1.0, 0.0);
+  drawPrism(1.0, 30);
+  glPopMatrix();
+
+  glPushMatrix();
+  glTranslated(0.0, 0.0, 15.0);
+  drawPrism(1.0, 21);
+  glPopMatrix();
+
+  glPushMatrix();
+  glTranslated(0.0, 0.0, -15.0);
+  drawPrism(1.0, 21);
+  glPopMatrix();
+
 
   glFlush();
 }
 
 void reshape(int w, int h) {
-  // ƒEƒBƒ“ƒhƒE‚Ì•`‰æ”ÍˆÍ
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ç¯„å›²
   glViewport(0, 0, w, h);
 
-  // “§‹“Š‰e
+  // é€è¦–æŠ•å½±
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   gluPerspective(30.0, (double)w / (double)h, 1.0, 100.0);
@@ -75,6 +96,7 @@ void reshape(int w, int h) {
 }
 
 // Drawing Functions
+// è»¸ã®è¡¨ç¤º
 void drawAxis() {
   glBegin(GL_LINES);
 
@@ -98,6 +120,7 @@ void drawAxis() {
   glColor3d(1.0, 1.0, 1.0);
 }
 
+// Xè»¸ä¸Šã«è§’æŸ±ã‚’ä½œã‚‹
 void drawPrism(double thickness, double length) {
   glBegin(GL_QUADS);
 
