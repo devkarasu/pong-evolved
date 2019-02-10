@@ -80,6 +80,10 @@ void display() {
   drawPrism(1.0, 21);
   glPopMatrix();
 
+  // 玉の表示
+  glPushMatrix();
+  glutSolidCube(2);
+  glPopMatrix();
 
   glFlush();
 }
