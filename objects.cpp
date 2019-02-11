@@ -2,7 +2,7 @@
 #include "objects.h"
 #include "draw_item.h"
 
-std::uniform_real<> rand_speed(-0.03, 0.03);
+std::uniform_real_distribution<> rand_speed(-0.03, 0.03);
 
 Ball::Ball() :x(0), z(0), x_speed(rand_speed(mt)), z_speed(rand_speed(mt)), size(0.1), score(0) {};
 
