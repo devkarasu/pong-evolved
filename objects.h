@@ -1,5 +1,7 @@
 #pragma once
 
+enum AXIS { X, Y, Z };
+
 struct Ball {
   double x;
   double z;
@@ -7,8 +9,13 @@ struct Ball {
   double x_speed;
   double z_speed;
 
+  double size;
+
+  int score;
+
   Ball();
   void draw();
+  void hit(AXIS axis);
 };
 
 class BarPair {
@@ -29,6 +36,6 @@ public:
   double getSpeed() const;
   void stop();
 
-  bool isHit(const Ball& ball);
+  int checkHit(Ball& ball);
 };
 

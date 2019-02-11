@@ -2,17 +2,32 @@
 #include "objects.h"
 #include "draw_item.h"
 
-Ball::Ball() :x(0), z(0), x_speed(0.2), z_speed(0.4) {};
+std::random_device seed;
+std::mt19937 mt(seed());
+std::uniform_real<> rand_speed(-0.3, 0.3);
+
+Ball::Ball() :x(0), z(0), x_speed(rand_speed(mt)), z_speed(rand_speed(mt)), size(1.0), score(0) {};
 
 void Ball::draw() {
   glPushMatrix();
   glTranslated(x, 0, z);
-  glutSolidCube(1.0);
+  glutSolidCube(size);
   glPopMatrix();
 
   x += x_speed;
   z += z_speed;
 }
+
+void Ball::hit(AXIS axis) {
+  ++score;
+  if (axis == X) {
+    z_speed *= -1;
+  }
+  else if (axis == Z) {
+    x_speed *= -1;
+  }
+}
+
 BarPair::BarPair(double length, double width, double angle, double limit) 
   : position(0), length(length), width(width), speed(0), angle(angle), limit(limit) { }
 
@@ -53,4 +68,41 @@ double BarPair::getSpeed() const {
 
 void BarPair::stop() {
   speed = 0;
+}
+
+int BarPair::checkHit(Ball& ball) {
+  if (angle == 0) {
+    if (ball.z + ball.size / 2 > width / 2 || ball.z - ball.size / 2 < -width / 2) {
+      if (ball.x - ball.size / 2 <= position + length / 2 && ball.x + ball.size / 2 >= position - length / 2) {
+        ball.hit(X);
+        // Hit
+        return 1;
+      }
+      else {
+        // ゲームオーバー
+        return 0;
+      }
+    }
+    else {
+      // 端まで未到達
+      return -1;
+    }
+  }
+  else {
+    if (ball.x + ball.size / 2 > width / 2 || ball.x - ball.size / 2 < -width / 2) {
+      if (ball.z + ball.size / 2 <= position + length / 2 && ball.z - ball.size / 2 >= position - length / 2) {
+        ball.hit(Z);
+        // Hit
+        return 1;
+      }
+      else {
+        // ゲームオーバー
+        return 0;
+      }
+    }
+    else {
+      // 端まで未到達
+      return -1;
+    }
+  }
 }

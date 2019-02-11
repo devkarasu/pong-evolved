@@ -54,7 +54,7 @@ void display() {
   glLoadIdentity();
 
   // 視点の設定
-  gluLookAt(90.0, 70.0, 40.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+  gluLookAt(0.0, 100.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0);
 
   // 軸の表示
   drawAxis();
@@ -130,6 +130,9 @@ void timer(int t) {
   else if (isPressR)
     bar_z.moveLeft(0.05);
   
+  std::cout << "x:" << bar_x.checkHit(ball) << std::endl;
+  std::cout << "z:" << bar_z.checkHit(ball) << std::endl;
+
   glutPostRedisplay();
   glutTimerFunc(t, timer, 20);
 }

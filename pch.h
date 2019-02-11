@@ -10,5 +10,6 @@
 // TODO: add headers that you want to pre-compile here
 #include <iostream>
 #include <GL/glut.h>
+#include <random>
 
 #endif //PCH_H
