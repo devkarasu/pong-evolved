@@ -8,6 +8,8 @@ void reshape(int w, int h);
 void specialkeyDown(int key, int x, int y);
 void specialkeyUp(int key, int x, int y);
 void timer(int t);
+void timer_gameover1(int t);
+void timer_gameover2(int t);
 
 Ball ball;
 Particles p;
@@ -17,6 +19,8 @@ bool isPressL = false;
 bool isPressR = false;
 bool isPressU = false;
 bool isPressD = false;
+
+bool isGameover = false;
 
 // Initialization
 void GLUT_INIT() {
@@ -62,14 +66,18 @@ void display() {
   drawAxis();
 
   // 物体の色
-  glColor3d(0.0, 1.0, 0.0);
+  if (isGameover)
+    glColor3d(1, 0, 0);
+  else
+    glColor3d(0.0, 1.0, 0.0);
 
   // 枠の表示
   bar_x.draw();
   bar_z.draw();
 
   // 玉の表示
-  ball.draw();
+  if (!isGameover)
+    ball.draw();
 
   // パーティクルの表示
   p.draw();
@@ -135,15 +143,31 @@ void timer(int t) {
   else if (isPressR)
     bar_z.moveLeft(0.05);
   
-  if (bar_z.checkHit(ball) == 1) {
-    std::cout << "z:hit\n";
+  int zc = bar_z.checkHit(ball);
+  int xc = bar_x.checkHit(ball);
+  if (zc == 1)
     p.addParticles(100, ball.x, 0, ball.z);
-  }
-  if (bar_x.checkHit(ball) == 1) {
-    std::cout << "x:hit\n";
+  if (xc == 1)
     p.addParticles(100, ball.x, 0, ball.z);
-  }
+
+  if (zc == 0 || xc == 0)
+    isGameover = true;
 
   glutPostRedisplay();
-  glutTimerFunc(t, timer, 20);
+  if (!isGameover)
+    glutTimerFunc(t, timer, 20);
+  else {
+    p.addParticles(5000, ball.x, 0, ball.z);
+    glutPostRedisplay();
+    glutTimerFunc(1000, timer_gameover1, 20);
+  }
+}
+
+void timer_gameover1(int t) {
+  glutTimerFunc(20, timer_gameover2, 20);
+}
+
+void timer_gameover2(int t) {
+  glutPostRedisplay();
+  glutTimerFunc(20, timer_gameover2, 20);
 }

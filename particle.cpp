@@ -2,11 +2,11 @@
 #include "particle.h"
 
 std::uniform_real_distribution<> rand_vec(-3.0, 3.0);
-
+std::uniform_real_distribution<> rand_pos(-1.0, 1.0);
 Particle::Particle() {};
 
 Particle::Particle(double x, double y, double z, int life) 
-  : pos{ x, y, z }, life(life), vec{ rand_vec(mt), rand_vec(mt), rand_vec(mt) }, life_max(life) { }
+  : pos{ x+rand_pos(mt), y+rand_pos(mt), z+rand_pos(mt) }, life(life), vec{ rand_vec(mt), rand_vec(mt), rand_vec(mt) }, life_max(life) { }
 
 Particle::Particle(const Particle& lhs)
   : pos{ lhs.pos[0], lhs.pos[1], lhs.pos[2] }, 
@@ -16,7 +16,6 @@ bool Particle::draw() {
   if (life-- < 0)
     return true;
 
-  glColor4d(0.3, 1, 0.4, life / (double)life_max);
   glVertex3dv(pos);
 
   for (int i = 0; i != 3; ++i)
