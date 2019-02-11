@@ -2,9 +2,9 @@
 #include "objects.h"
 #include "draw_item.h"
 
-std::uniform_real<> rand_speed(-0.3, 0.3);
+std::uniform_real<> rand_speed(-0.03, 0.03);
 
-Ball::Ball() :x(0), z(0), x_speed(rand_speed(mt)), z_speed(rand_speed(mt)), size(1.0), score(0) {};
+Ball::Ball() :x(0), z(0), x_speed(rand_speed(mt)), z_speed(rand_speed(mt)), size(0.1), score(0) {};
 
 void Ball::draw() {
   glPushMatrix();
@@ -25,7 +25,7 @@ void Ball::hit(AXIS axis) {
     x_speed *= -1;
   }
 
-  double add = 0.05;
+  double add = 0.005;
   z_speed += z_speed < 0 ? -add : add;
   x_speed += x_speed < 0 ? -add : add;
 }
@@ -59,7 +59,7 @@ void BarPair::draw() const {
     else
       glTranslated(i * width / 2, 0.0, position);
     glRotated(angle, 0.0, 1.0, 0.0);
-    drawPrism(1.0, length);
+    drawPrism(0.1, length);
     glPopMatrix();
   }
 }

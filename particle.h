@@ -21,5 +21,4 @@ struct Particles {
   void draw();
 
   void addParticles(int n, double x, double y, double z);
-  void gameover(double x, double z);
 };

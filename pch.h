@@ -12,6 +12,7 @@
 #include <GL/glut.h>
 #include <random>
 #include <vector>
+#include <string>
 
 static std::random_device seed;
 static std::mt19937 mt(seed());

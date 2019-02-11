@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "particle.h"
 
-std::uniform_real_distribution<> rand_vec(-3.0, 3.0);
-std::uniform_real_distribution<> rand_pos(-1.0, 1.0);
+std::uniform_real_distribution<> rand_vec(-0.3, 0.3);
+std::uniform_real_distribution<> rand_pos(-0.1, 0.1);
 Particle::Particle() {};
 
 Particle::Particle(double x, double y, double z, int life) 
