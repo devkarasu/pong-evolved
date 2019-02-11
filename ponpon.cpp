@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "draw_item.h"
 #include "objects.h"
+#include "particle.h"
 
 void display();
 void reshape(int w, int h);
@@ -9,6 +10,7 @@ void specialkeyUp(int key, int x, int y);
 void timer(int t);
 
 Ball ball;
+Particles p;
 BarPair bar_x(8, 40, 0, 16);
 BarPair bar_z(8, 40, 90, 16);
 bool isPressL = false;
@@ -68,6 +70,9 @@ void display() {
 
   // 玉の表示
   ball.draw();
+
+  // パーティクルの表示
+  p.draw();
 
   glFlush();
 }
@@ -130,8 +135,14 @@ void timer(int t) {
   else if (isPressR)
     bar_z.moveLeft(0.05);
   
-  std::cout << "x:" << bar_x.checkHit(ball) << std::endl;
-  std::cout << "z:" << bar_z.checkHit(ball) << std::endl;
+  if (bar_z.checkHit(ball) == 1) {
+    std::cout << "z:hit\n";
+    p.addParticles(100, ball.x, 0, ball.z);
+  }
+  if (bar_x.checkHit(ball) == 1) {
+    std::cout << "x:hit\n";
+    p.addParticles(100, ball.x, 0, ball.z);
+  }
 
   glutPostRedisplay();
   glutTimerFunc(t, timer, 20);

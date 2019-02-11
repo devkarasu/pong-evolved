@@ -2,8 +2,6 @@
 #include "objects.h"
 #include "draw_item.h"
 
-std::random_device seed;
-std::mt19937 mt(seed());
 std::uniform_real<> rand_speed(-0.3, 0.3);
 
 Ball::Ball() :x(0), z(0), x_speed(rand_speed(mt)), z_speed(rand_speed(mt)), size(1.0), score(0) {};
@@ -26,6 +24,10 @@ void Ball::hit(AXIS axis) {
   else if (axis == Z) {
     x_speed *= -1;
   }
+
+  double add = 0.05;
+  z_speed += z_speed < 0 ? -add : add;
+  x_speed += x_speed < 0 ? -add : add;
 }
 
 BarPair::BarPair(double length, double width, double angle, double limit) 

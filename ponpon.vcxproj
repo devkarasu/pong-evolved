@@ -153,11 +153,13 @@
   <ItemGroup>
     <ClInclude Include="objects.h" />
     <ClInclude Include="draw_item.h" />
+    <ClInclude Include="particle.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="objects.cpp" />
     <ClCompile Include="draw_item.cpp" />
+    <ClCompile Include="particle.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

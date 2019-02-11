@@ -11,5 +11,9 @@
 #include <iostream>
 #include <GL/glut.h>
 #include <random>
+#include <vector>
+
+static std::random_device seed;
+static std::mt19937 mt(seed());
 
 #endif //PCH_H
