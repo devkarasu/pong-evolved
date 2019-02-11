@@ -16,13 +16,15 @@ void Ball::draw() {
   z += z_speed;
 }
 
-void Ball::hit(AXIS axis) {
+void Ball::hit(AXIS axis, double s) {
   ++score;
   if (axis == X) {
     z_speed *= -1;
+    x_speed -= s * 0.2;
   }
   else if (axis == Z) {
     x_speed *= -1;
+    z_speed -= s * 0.2;
   }
 
   double add = 0.005;
@@ -76,7 +78,7 @@ int BarPair::checkHit(Ball& ball) {
   if (angle == 0) {
     if (ball.z + ball.size / 2 > width / 2 || ball.z - ball.size / 2 < -width / 2) {
       if (ball.x - ball.size / 2 <= position + length / 2 && ball.x + ball.size / 2 >= position - length / 2) {
-        ball.hit(X);
+        ball.hit(X, speed);
         // Hit
         return 1;
       }
@@ -93,7 +95,7 @@ int BarPair::checkHit(Ball& ball) {
   else {
     if (ball.x + ball.size / 2 > width / 2 || ball.x - ball.size / 2 < -width / 2) {
       if (ball.z + ball.size / 2 <= position + length / 2 && ball.z - ball.size / 2 >= position - length / 2) {
-        ball.hit(Z);
+        ball.hit(Z, speed);
         // Hit
         return 1;
       }

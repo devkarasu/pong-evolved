@@ -15,7 +15,7 @@ struct Ball {
 
   Ball();
   void draw();
-  void hit(AXIS axis);
+  void hit(AXIS axis, double s);
 };
 
 class BarPair {
