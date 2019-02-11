@@ -26,8 +26,6 @@ bool isPressR = false;
 bool isPressU = false;
 bool isPressD = false;
 
-int score = 0;
-
 // Initialization
 void GLUT_INIT() {
   glutInitDisplayMode(GLUT_RGBA);
@@ -117,7 +115,6 @@ void keyboard(unsigned char key, int x, int y) {
       std::cout << "Start\n";
       ball = Ball();
       p.data.erase(std::begin(p.data), std::end(p.data));
-      score = 0;
       if (gamestate == GAMEOVER)
         glutTimerFunc(20, timer, 20);
       gamestate = PLAY;
@@ -180,11 +177,9 @@ void timer(int t) {
     int zc = bar_z.checkHit(ball);
     int xc = bar_x.checkHit(ball);
     if (zc == 1) {
-      ++score;
       p.addParticles(100, ball.x, 0, ball.z);
     }
     if (xc == 1) {
-      ++score;
       p.addParticles(100, ball.x, 0, ball.z);
     }
 
@@ -215,7 +210,7 @@ void timer_gameover2(int t) {
 void printScore() {
   // スコア表示
   void *font = GLUT_BITMAP_HELVETICA_18;
-  std::string cscore = std::to_string(score);
+  std::string cscore = std::to_string(ball.score);
   if (cscore.length() == 1) {
     glRasterPos3d(0, 0, 0);
     glutBitmapCharacter(font, cscore[0]);
