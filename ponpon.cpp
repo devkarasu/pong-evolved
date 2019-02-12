@@ -118,6 +118,7 @@ void keyboard(unsigned char key, int x, int y) {
       if (gamestate == GAMEOVER)
         glutTimerFunc(20, timer, 20);
       gamestate = PLAY;
+      PlaySound(TEXT("start.wav"), NULL, SND_ASYNC);
     }
   }
 }
