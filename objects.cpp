@@ -30,6 +30,8 @@ void Ball::hit(AXIS axis, double s) {
   double add = 0.005;
   z_speed += z_speed < 0 ? -add : add;
   x_speed += x_speed < 0 ? -add : add;
+
+  PlaySound(TEXT("hit.wav"), NULL, SND_ASYNC);
 }
 
 BarPair::BarPair(double length, double width, double angle, double limit) 

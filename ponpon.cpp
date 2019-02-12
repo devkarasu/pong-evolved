@@ -198,6 +198,7 @@ void timer(int t) {
 }
 
 void timer_gameover1(int t) {
+  PlaySound(TEXT("gameover.wav"), NULL, SND_ASYNC);
   glutTimerFunc(20, timer_gameover2, 20);
 }
 

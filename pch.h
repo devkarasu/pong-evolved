@@ -13,6 +13,7 @@
 #include <random>
 #include <vector>
 #include <string>
+#include <MMSystem.h>
 
 static std::random_device seed;
 static std::mt19937 mt(seed());
