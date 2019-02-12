@@ -29,7 +29,7 @@ bool isPressD = false;
 // Initialization
 void GLUT_INIT() {
   glutInitDisplayMode(GLUT_RGBA);
-  glutInitWindowSize(640, 480);
+  glutInitWindowSize(600, 600);
   glutCreateWindow("PONG:Evolved");
 }
 
@@ -67,7 +67,7 @@ void display() {
   glLoadIdentity();
 
   // 視点の設定
-  gluLookAt(4.0, 10.0, 2.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+  gluLookAt(0.0, 10.6, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, -1.0);
 
   // 軸の表示
   //drawAxis();
